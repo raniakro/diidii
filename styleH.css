@@ -80,9 +80,10 @@ a {
   padding: 0.75rem 1.5rem !important;
 }
 
+img#logo-img-tag,
 .logo #logo-img img {
-  height: 89px;
-  width: auto;
+  height: 89px !important;
+  width: auto !important;
 }
 
 nav {
@@ -215,8 +216,8 @@ radial-gradient(ellipse 50% 60% at 70% 80%, rgba(200, 180, 230, 0.4), transparen
 
 .background-area {
   background:
-    radial-gradient(ellipse 60% 90% at 80% 10%, rgba(155, 193, 168, 0.35), transparent 60%),
-    radial-gradient(ellipse 55% 80% at 10% 90%, rgba(107, 127, 163, 0.3), transparent 60%),
+    radial-gradient(ellipse 60% 90% at 80% 10%, rgba(210, 170, 220, 0.35), transparent 60%),
+radial-gradient(ellipse 55% 80% at 10% 90%, rgba(160, 190, 230, 0.3), transparent 60%),
     var(--color-bg-soft);
   padding: var(--space-xl) var(--space-md);
 }
