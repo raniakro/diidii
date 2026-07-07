@@ -214,9 +214,10 @@
         &copy; 2024 Diidii App. All rights reserved.
     </footer>
 
-    <script>
+  <script>
         let currentUser = '';
 
+        // Clean initialization: directly check login and load user cards
         async function checkLoginAndFetch() {
             try {
                 const response = await fetch('/check-login');
@@ -224,16 +225,22 @@
                     const data = await response.json();
                     if (data.loggedIn) {
                         currentUser = data.username;
-                        document.getElementById('usernameDisplay').textContent = data.username;
-                        document.getElementById('profileBadge').style.display = 'block';
+                        
+                        // Safely update the hardcoded header elements if they exist
+                        const userDisplay = document.getElementById('usernameDisplay');
+                        const profileBadge = document.getElementById('profileBadge');
+                        
+                        if (userDisplay) userDisplay.textContent = data.username;
+                        if (profileBadge) profileBadge.style.display = 'block';
+                        
                         fetchMemories();
                     } else {
                         document.getElementById('memories').innerHTML = '<div class="status-message">Please log in to view memories.</div>';
                     }
                 }
             } catch (err) {
-                console.log("Testing environment: Bypassing dynamic server authentication check.");
-                // Optional: Uncomment for styling visual preview when server offline
+                console.log("Testing environment: Server offline. Defaulting to local design view.");
+                // Optional: Uncomment below if you want to test card visuals without a live backend connection
                 // fetchMemories(); 
             }
         }
@@ -294,7 +301,7 @@
             }
         }
 
-        // Execute initialization setup sequential routing
+        // Run setup routing automatically on render
         checkLoginAndFetch();
     </script>
 </body>
