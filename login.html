@@ -170,7 +170,23 @@
 </head>
 <body>
 
-    <div id="navbar"></div>
+    <div id="navbar" class="w3-top">
+        <div class="profile-badge" id="profileBadge">Logged in as <span id="usernameDisplay"></span></div>
+        <div class="w3-row w3-padding w3-white">  
+            <div class="logo"> 
+                <div id="logo-img">
+                    <img src="logo_square-removebg-preview copy.png" alt="diidii logo">
+                </div>
+            </div>
+            <nav>
+                <a href="help.html">Help</a>
+                <a href="conect.html">Upload</a>
+                <a href="memories.html">Memories</a>
+                <a href="login.html">Login</a>
+                <a href="index.html">Home</a>
+            </nav>
+        </div>
+    </div>
 
     <div class="page-wrapper">
         <div class="content-area">
@@ -199,7 +215,61 @@
     </footer>
 
     <script>
-        // Clean dynamic navbar injector
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(
+        // Check dynamic status directly on page render
+        fetch('/check-login')
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    document.getElementById('usernameDisplay').textContent = data.username;
+                    document.getElementById('profileBadge').style.display = 'block';
+                }
+            })
+            .catch(err => console.log("Login check routing bypassed."));
+
+        // Login Handler Action
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                alert('Login successful!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Login failed. Please check your username and password.');
+            }
+        });
+
+        // Sign Up Action Route
+        document.getElementById('signupBtn').addEventListener('click', async () => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                alert('Please enter both username and password');
+                return;
+            }
+
+            const response = await fetch('/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                alert('Sign up successful! Please login.');
+                document.getElementById('loginForm').reset();
+            } else {
+                const error = await response.text();
+                alert(error);
+            }
+        });
+    </script>
+</body>
+</html>
