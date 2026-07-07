@@ -111,10 +111,10 @@ nav a:focus-visible {
 .banner-area {
   position: relative;
   background:
-   radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.55), transparent 60%),
-    radial-gradient(ellipse 55% 75% at 85% 30%, rgba(150, 170, 220, 0.45), transparent 60%),
-    radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 167, 190, 0.4), transparent 65%),
-    radial-gradient(ellipse 50% 60% at 70% 80%, rgba(190, 175, 225, 0.4), transparent 60%),
+  radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.55), transparent 60%),
+radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.5), transparent 60%),
+radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.45), transparent 65%),
+radial-gradient(ellipse 50% 60% at 70% 80%, rgba(200, 180, 230, 0.4), transparent 60%),
     var(--color-bg);
   padding: var(--space-xl) var(--space-md);
   text-align: center;
