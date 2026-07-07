@@ -49,7 +49,7 @@
             justify-content: space-between !important;
             background: var(--color-white) !important;
             border-bottom: 1px solid var(--color-border);
-            padding: 0 4.5rem !important; /* Matches look of login page screenshot edges */
+            padding: 0 4.5rem !important;
             height: 80px !important;
         }
 
@@ -165,7 +165,7 @@
 <body>
 
     <div class="w3-top">
-        <div class="profile-badge" id="profileBadge">Logged in as <span id="usernameDisplay"></span></div>
+        <div class="profile-badge" id="profileBadge" style="display: none;">Logged in as <span id="usernameDisplay"></span></div>
         <div class="w3-row w3-padding w3-white login-navbar-row">  
             <div class="logo"> 
                 <div id="logo-img">
@@ -209,14 +209,25 @@
     </footer>
 
     <script>
-        fetch('/check-login')
-            .then(response => response.json())
-            .then(data => {
-                if (data.loggedIn) {
-                    document.getElementById('usernameDisplay').textContent = data.username;
-                    document.getElementById('profileBadge').style.display = 'block';
+        // Wrapped safely inside an async function with try/catch blocks 
+        // to guarantee a backend crash cannot turn your visual page blank!
+        async function checkLogin() {
+            try {
+                const response = await fetch('/check-login');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.loggedIn) {
+                        document.getElementById('usernameDisplay').textContent = data.username;
+                        document.getElementById('profileBadge').style.display = 'block';
+                    }
                 }
-            }).catch(err => console.log("Login verification skipped."));
+            } catch (err) {
+                console.log("Local test mode active: API server not found.");
+            }
+        }
+        
+        // Execute safety check
+        checkLogin();
     </script>
 </body>
 </html>
