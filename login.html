@@ -5,45 +5,306 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="styleH.css">
+    <title>Login</title>
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            /* Color tokens — soft pastel watercolor */
+            --color-bg: #FDFBF8;           /* warm off-white */
+            --color-bg-soft: #FBF3EE;      /* faint blush panel */
+            --color-primary: #6B7FA3;      /* dusty pastel blue */
+            --color-primary-light: #9FB2CE;
+            --color-accent: #E8A7A0;       /* soft blush pink accent */
+            --color-accent-2: #E8C97A;     /* soft sandy yellow */
+            --color-accent-3: #9BC1A8;     /* soft sage */
+            --color-text: #2C2C2C;
+            --color-text-soft: #5A5A54;
+            --color-border: #EBE1D6;
+            --color-white: #FFFFFF;
+
+            /* Type */
+            --font-heading: 'Fraunces', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+
+            /* Spacing scale */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.75rem;
+            --space-lg: 3rem;
+            --space-xl: 5rem;
+
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-size: 18px; /* accessible base size */
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* ---------- Top bar / nav ---------- */
+        .w3-top {
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-badge {
+            display: none;
+            background: var(--color-primary);
+            color: var(--color-white);
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            text-align: right;
+        }
+
+        .w3-row.w3-padding {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--color-white) !important;
+            border-bottom: 1px solid var(--color-border);
+            padding: 0.75rem 1.5rem !important;
+        }
+
+        .logo #logo-img img {
+            height: 89px !important;
+            width: auto !important;
+        }
+
+        nav {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        nav a {
+            color: var(--color-text);
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1.25rem; /* Balanced size for better readability */
+            padding: 0.5rem 0.25rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            border-bottom-color: var(--color-accent);
+            outline: none;
+        }
+
+        /* ---------- Main Page Layout & Banner Mix ---------- */
+        .page-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            /* Multi-layer soft watercolor gradients mirroring your brand design */
+            background:
+                radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%),
+                radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%),
+                radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.3), transparent 65%),
+                var(--color-bg);
+            padding: var(--space-xl) var(--space-md);
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ---------- Styled Form Container ---------- */
+        .content-area {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: var(--space-lg) var(--space-md);
+            box-shadow: 0 4px 20px rgba(44, 44, 44, 0.05);
+            max-width: 480px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .content-area h2 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 2.25rem;
+            color: var(--color-text);
+            margin-top: 0;
+            margin-bottom: var(--space-md);
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+
+        .content-area label {
+            display: block;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--color-text-soft);
+            margin-bottom: var(--space-xs);
+        }
+
+        /* ---------- Accessible, Clean Inputs ---------- */
+        .content-area input[type="text"],
+        .content-area input[type="password"] {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            margin-bottom: var(--space-md);
+            display: block;
+            border: 1px solid var(--color-border);
+            box-sizing: border-box;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--color-text);
+            border-radius: 8px;
+            background-color: var(--color-bg);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .content-area input[type="text"]:focus,
+        .content-area input[type="password"]:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(107, 127, 163, 0.15);
+        }
+
+        /* ---------- Soft and Action-Clear Buttons ---------- */
+        .form-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .content-area button {
+            font-family: var(--font-body);
+            font-weight: 500;
+            padding: 0.85rem;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+
+        .content-area button[type="submit"] {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .content-area button#signupBtn {
+            background-color: var(--color-bg-soft);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .content-area button:hover {
+            opacity: 0.9;
+        }
+
+        .content-area button:active {
+            transform: scale(0.99);
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            text-align: center;
+            padding: var(--space-md);
+            background: var(--color-white);
+            border-top: 1px solid var(--color-border);
+            font-size: 0.9rem;
+            color: var(--color-text-soft);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 640px) {
+            .w3-row.w3-padding {
+                flex-direction: column;
+                gap: var(--space-sm);
+                text-align: center;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--space-sm);
+            }
+            nav a {
+                font-size: 1.1rem;
+            }
+            .page-wrapper {
+                padding: var(--space-lg) var(--space-sm);
+            }
+        }
+
+        /* ---------- Accessibility ---------- */
+        :focus-visible {
+            outline: 3px solid var(--color-accent);
+            outline-offset: 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
 
     <div class="w3-top">
         <div class="profile-badge" id="profileBadge">Logged in as <span id="usernameDisplay"></span></div>
         <div class="w3-row w3-padding w3-purple">  
-              <div class = "logo"> 
-                  <div id = "logo-img">
-                      <img src = "logo_square-removebg-preview copy.png">
-                  </div>
-              </div>
-          <nav>
-              <a href="help.html">Help</a>
-              <a href="conect.html">Upload</a>
-              <a href="memories.html">Memories</a>
-              <a href="login.html">Login</a>
-              <a href="index.html">Home</a>
-          </nav>
+            <div class="logo"> 
+                <div id="logo-img">
+                    <img src="logo_square-removebg-preview copy.png" alt="diidii logo">
+                </div>
+            </div>
+            <nav>
+                <a href="help.html">Help</a>
+                <a href="conect.html">Upload</a>
+                <a href="memories.html">Memories</a>
+                <a href="login.html">Login</a>
+                <a href="index.html">Home</a>
+            </nav>
         </div>
-        
     </div>
 
-    <title>Login</title>
-    
-<body>
-    <div id="navbar"></div>
-
-    <div class="content-area">
-        <div class="wrapper">
-            <h2>Login</h2>
-            <form id="loginForm">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <br>
-                <button type="submit">Login</button>
-                <button type="button" id="signupBtn" style="background-color: #4CAF50;">Sign Up</button>
-            </form>
+    <div class="page-wrapper">
+        <div class="content-area">
+            <div class="wrapper">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <div class="form-actions">
+                        <button type="submit">Login</button>
+                        <button type="button" id="signupBtn">Sign Up</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -52,22 +313,31 @@
     </footer>
 
     <script>
-        // Include the navbar
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
+        // Include the navbar (if used dynamically, otherwise w3-top elements handle layout structural elements)
+        const navbarDiv = document.getElementById('navbar');
+        if(navbarDiv) {
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    navbarDiv.innerHTML = data;
+                    checkLoginStatus();
+                });
+        } else {
+            checkLoginStatus();
+        }
 
-                // Check if the user is logged in and display the profile badge
-                fetch('/check-login')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.loggedIn) {
-                            document.getElementById('usernameDisplay').textContent = data.username;
-                            document.getElementById('profileBadge').style.display = 'block';
-                        }
-                    });
-            });
+        function checkLoginStatus() {
+            fetch('/check-login')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.loggedIn) {
+                        const userDisp = document.getElementById('usernameDisplay');
+                        const profBadge = document.getElementById('profileBadge');
+                        if(userDisp) userDisp.textContent = data.username;
+                        if(profBadge) profBadge.style.display = 'block';
+                    }
+                }).catch(err => console.log("Login check skipped or unavailable setup."));
+        }
 
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -76,9 +346,7 @@
 
             const response = await fetch('/login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
 
@@ -90,7 +358,6 @@
             }
         });
 
-        // Add this to your existing script
         document.getElementById('signupBtn').addEventListener('click', async () => {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -102,9 +369,7 @@
 
             const response = await fetch('/signup', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
 
