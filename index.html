@@ -1,33 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Memory — diidii</title>
-  <link rel="stylesheet" href="styleH.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Memories</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            --color-bg: #FDFBF8;
+            --color-bg-soft: #FBF3EE;
+            --color-primary: #6B7FA3;
+            --color-accent: #E8A7A0;
+            --color-text: #2C2C2C;
+            --color-text-soft: #5A5A54;
+            --color-border: #EBE1D6;
+            --color-white: #FFFFFF;
+            --font-heading: 'Fraunces', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --space-sm: 1rem;
+            --space-md: 1.75rem;
+            --space-lg: 3rem;
+            --space-xl: 5rem;
+            --radius: 16px;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Navbar Layout --- */
+        .login-navbar-row {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            background: var(--color-white) !important;
+            border-bottom: 1px solid var(--color-border);
+            padding: 0 4.5rem !important;
+            height: 80px !important;
+        }
+
+        .logo, #logo-img, .logo #logo-img img {
+            height: 44px !important;
+            max-height: 44px !important;
+            width: auto !important;
+        }
+
+        nav {
+            display: flex !important;
+            align-items: center !important;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--color-text) !important;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1.25rem;
+            text-decoration: none;
+        }
+
+        /* --- Canvas & Page Context Elements --- */
+        .page-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), 
+                        radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
+                        radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.3), transparent 65%), 
+                        var(--color-bg);
+            padding: calc(var(--space-xl) + 40px) var(--space-sm) var(--space-xl); /* Balanced offset below the navbar */
+            align-items: center;
+        }
+
+        .content-area {
+            max-width: 1024px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .content-area h2 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 2.75rem;
+            color: var(--color-text);
+            margin-top: 0;
+            margin-bottom: var(--space-sm);
+        }
+
+        /* --- Helpful User Alert Note --- */
+      /* --- Helpful User Alert Note --- */
+.info-note {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: #4A5568; /* Slightly darker grey for better readability */
+    max-width: 650px;
+    margin: var(--space-md) auto var(--space-lg) auto;
+    background-color: #FFFDF9; /* solid, warm tint instead of transparent */
+    border: 2px solid var(--color-border); /* Slightly thicker border */
+    padding: 1rem 2rem;
+    border-radius: var(--radius); /* Matches your page container curvature scale */
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); /* Very soft shadow to make it pop */
+    text-align: left; /* Keeps the text alignment easy to read */
+}
+        /* --- Memory Grid Cards Layout --- */
+        .memory-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            padding: var(--space-sm);
+        }
+
+        .memory-item {
+            flex: 1 1 260px;
+            max-width: 280px;
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: var(--space-sm);
+            box-shadow: 0 4px 15px rgba(44, 44, 44, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .memory-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(44, 44, 44, 0.08);
+        }
+
+        .memory-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: var(--space-sm);
+            border: 1px solid var(--color-border);
+        }
+
+        .memory-item video, 
+        .memory-item audio {
+            width: 100%;
+            margin-bottom: var(--space-sm);
+            border-radius: 8px;
+        }
+
+        .file-name {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--color-text);
+            margin: 5px 0;
+            word-break: break-all;
+            text-align: left;
+            padding-left: 4px;
+        }
+
+        .status-message {
+            font-family: var(--font-body);
+            color: var(--color-text-soft);
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-top: var(--space-md);
+        }
+
+        footer { 
+            text-align: center; 
+            padding: var(--space-md); 
+            background: var(--color-white); 
+            border-top: 1px solid var(--color-border); 
+            font-size: 0.9rem; 
+            color: var(--color-text-soft); 
+        }
+
+        @media (max-width: 640px) {
+            .login-navbar-row {
+                padding: 0 1.5rem !important;
+            }
+            .memory-item {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Top header: logo + nav -->
-  <div class="w3-top">
-    <div class="profile-badge" id="profileBadge">Logged in as <span id="usernameDisplay"></span></div>
-    <div class="w3-row w3-padding">
-      <div class="logo">
-        <div id="logo-img">
-          <img src="logo_square-removebg-preview copy.png" alt="diidii logo">
+    <div class="w3-top">
+        <div class="profile-badge" id="profileBadge" style="display: none;">Logged in as <span id="usernameDisplay"></span></div>
+        <div class="w3-row w3-padding w3-white login-navbar-row">  
+            <div class="logo"> 
+                <div id="logo-img">
+                    <img src="logo_square-removebg-preview copy.png" alt="diidii logo">
+                </div>
+            </div>
+            <nav>
+                <a href="help.html">Help</a>
+                <a href="conect.html">Upload</a>
+                <a href="memories.html">Memories</a>
+                <a href="login.html">Login</a>
+                <a href="index.html">Home</a>
+            </nav>
         </div>
-      </div>
-      <nav>
-        <a href="help.html">Help</a>
-        <a href="conect.html">Upload</a>
-        <a href="memories.html">Memories</a>
-        <a href="login.html">Login</a>
-        <a href="index.html">Home</a>
-      </nav>
     </div>
-  </div>
 
-  <script>
+   
     fetch('navbar.html')
       .then(response => response.text())
       .then(data => {
