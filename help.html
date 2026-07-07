@@ -44,7 +44,7 @@
             min-height: 100vh;
         }
 
-        /* --- Unified App Navbar Layout --- */
+        /* --- Navbar Layout --- */
         .login-navbar-row {
             display: flex !important;
             align-items: center !important;
@@ -82,25 +82,25 @@
             border-bottom-color: var(--color-accent);
         }
 
-        /* --- Watercolor Canvas Core Layout Wrapper --- */
+        /* --- Page Wrapper Canvas Layout --- */
         .page-wrapper {
             flex: 1;
             display: flex;
             flex-direction: column;
-            margin-top: 80px; /* Offset below fixed top navbar */
+            margin-top: 80px; /* Offset for fixed top navbar */
             background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), 
                         radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
                         var(--color-bg);
         }
 
         .container {
-            max-width: 760px;
+            max-width: 800px;
             width: 100%;
             margin: 0 auto;
             padding: var(--space-xl) var(--space-sm);
         }
 
-        /* --- Section Content Cards --- */
+        /* --- Content Layout Area --- */
         .section {
             background-color: var(--color-white);
             border: 1px solid var(--color-border);
@@ -111,16 +111,24 @@
             text-align: left;
         }
 
+        .section h2 {
+            font-family: var(--font-heading);
+            color: var(--color-text);
+            margin-top: 0;
+            margin-bottom: var(--space-md);
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
         .section h3 {
             font-family: var(--font-heading);
             color: var(--color-primary);
             margin-top: 0;
             margin-bottom: var(--space-sm);
-            font-size: 2rem;
+            font-size: 1.75rem;
             font-weight: 500;
         }
 
-        /* --- Content List Sizing --- */
         ol {
             padding-left: 1.25rem;
             margin: 0;
@@ -133,7 +141,6 @@
             padding: var(--space-xs) 0;
         }
 
-        /* --- Soft Instructive Explainer Blocks --- */
         .tutorial { 
             background-color: var(--color-bg-soft);
             padding: var(--space-sm) var(--space-md);
@@ -142,55 +149,55 @@
             color: var(--color-text-soft);
             border-radius: 0 8px 8px 0;
             line-height: 1.6;
+            margin-bottom: var(--space-md);
         }
 
-        /* --- Help Navigation Layout Options --- */
+        /* --- Action Container Controls --- */
         .help-actions {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: var(--space-sm);
             margin-top: var(--space-md);
         }
 
-        /* Semantic Button Anchors --- */
-        .btn-link {
-            display: flex;
+        .btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
             font-family: var(--font-body);
             font-weight: 500;
-            padding: 1rem;
-            font-size: 1.15rem;
+            padding: 0.85rem 1.5rem;
+            font-size: 1.1rem;
             text-decoration: none !important;
             border-radius: 8px;
+            cursor: pointer;
             transition: opacity 0.2s ease, transform 0.1s ease;
-            background-color: var(--color-primary);
-            color: var(--color-white) !important;
-            box-shadow: 0 2px 5px rgba(107, 127, 163, 0.1);
+            flex: 1 1 180px;
+            text-align: center;
         }
 
-        .btn-link:hover { 
-            opacity: 0.95; 
+        .btn-primary { 
+            background-color: var(--color-primary); 
+            color: var(--color-white) !important; 
+        }
+
+        .btn:hover { 
+            opacity: 0.9; 
         }
         
-        .btn-link:active { 
+        .btn:active { 
             transform: scale(0.99); 
         }
 
-        /* Font Awesome alternative safety icons */
-        .btn-link i {
-            font-size: 1.25rem;
-        }
-
-        /* --- Footer Layout --- */
-        footer {
-            text-align: center;
-            padding: var(--space-md);
-            background-color: var(--color-white);
-            color: var(--color-text-soft);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--color-border);
+        /* --- Footer --- */
+        footer { 
+            text-align: center; 
+            padding: var(--space-md); 
+            background: var(--color-white); 
+            border-top: 1px solid var(--color-border); 
+            font-size: 0.9rem; 
+            color: var(--color-text-soft); 
             margin-top: auto;
         }
 
@@ -203,9 +210,23 @@
                 padding-bottom: 1rem !important;
                 gap: 1rem;
             }
-            .page-wrapper { margin-top: 140px; }
-            nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-            nav a { font-size: 1.1rem; }
+            .page-wrapper {
+                margin-top: 140px;
+            }
+            nav {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav a {
+                font-size: 1.1rem;
+            }
+            .help-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -236,28 +257,21 @@
                 <div class="tutorial">
                     <h3>Help Center</h3>
                     <ol>
-                        <li>Find answers to your questions about using diidii safely.</li>
-                        <li>Browse the guided topics below to learn more about each feature layout.</li>
+                        <li>Find answers to your questions about using diidii.</li>
+                        <li>Browse the topics below to learn more about each feature.</li>
                     </ol>
                 </div>
             </div>
 
             <div class="section">
+                <h2>Topics</h2>
                 <div class="help-actions">
-                    <a href="imagehelp.html" class="btn-link">
-                        <i class="material-icons">image</i> Uploading Images Guide
-                    </a>
-                
-                    <a href="help.html" class="btn-link">
-                        <i class="material-icons">videocam</i> Recording Video Tutorials
-                    </a>
-                
-                    <a href="conect.html" class="btn-link">
-                        <i class="material-icons">mic</i> Recording Audio Options
-                    </a>
+                    <a href="imagehelp.html" class="btn btn-primary">Uploading Images</a>
+                    <a href="help.html" class="btn btn-primary">Recording Video</a>
+                    <a href="conect.html" class="btn btn-primary">Recording audio</a>
                 </div>
             </div>
-            
+
         </div>
 
         <footer>
@@ -277,7 +291,7 @@
                     }
                 }
             } catch (err) {
-                console.log("Local system environment query bypassed.");
+                console.log("Local standalone server mode running.");
             }
         }
         checkLoginState();
