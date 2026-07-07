@@ -103,19 +103,21 @@
         }
 
         /* --- Helpful User Alert Note --- */
-        .info-note {
-            font-family: var(--font-body);
-            font-size: 1.05rem;
-            color: var(--color-text-soft);
-            max-width: 600px;
-            margin: 0 auto var(--space-lg) auto;
-            background-color: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--color-border);
-            padding: 0.75rem 1.5rem;
-            border-radius: 30px;
-            display: inline-block;
-        }
-
+      /* --- Helpful User Alert Note --- */
+.info-note {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: #4A5568; /* Slightly darker grey for better readability */
+    max-width: 650px;
+    margin: var(--space-md) auto var(--space-lg) auto;
+    background-color: #FFFDF9; /* solid, warm tint instead of transparent */
+    border: 2px solid var(--color-border); /* Slightly thicker border */
+    padding: 1rem 2rem;
+    border-radius: var(--radius); /* Matches your page container curvature scale */
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); /* Very soft shadow to make it pop */
+    text-align: left; /* Keeps the text alignment easy to read */
+}
         /* --- Memory Grid Cards Layout --- */
         .memory-grid {
             display: flex;
@@ -217,7 +219,7 @@
 
     <div class="page-wrapper">
         <div class="content-area">
-            <h2>Your Memories</h2>
+            <h2><br><br> Your Memories</h2>
             <div class="info-note">
                 💡 When logged into your account, all pictures, audio clips, and videos you have uploaded will appear safely here.
             </div>
