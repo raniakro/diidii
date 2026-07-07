@@ -58,10 +58,6 @@ a {
 
 /* ---------- Top bar / nav ---------- */
 
-/* ---------- Top bar / nav ---------- */
-
-/* ---------- Top bar / nav ---------- */
-
 .w3-top {
   position: relative;
   z-index: 100;
@@ -77,55 +73,36 @@ a {
 }
 
 .w3-row.w3-padding {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: var(--color-white) !important;
   border-bottom: 1px solid var(--color-border);
-  padding: 0 !important; /* Let nav-container handle the outer margins */
-  height: 80px !important;    
+  padding: 0.75rem 2rem !important; /* Balanced and comfortable spacing */
 }
 
-/* This new layout structural block keeps everything aligned across all templates */
-/* This centers the elements dynamically while extending gracefully to both screen edges */
-.nav-container {
-  width: 100%;
-  padding-left: 2.5rem;   /* Gives the logo breathing room from the left screen edge */
-  padding-right: 2.5rem;  /* Gives the menu breathing room from the right screen edge */
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  height: 100%;
-}
-
+/* Constrains logo sizing to fit perfectly inline with web navigation links */
 img#logo-img-tag,
-.logo,
-.logo div,
-#logo-img,
 .logo #logo-img img {
-  height: 44px !important;    
-  max-height: 44px !important;
+  height: 52px !important; 
   width: auto !important;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 !important;
-  padding: 0 !important;
+  display: block;
 }
 
 nav {
-  display: flex !important;
-  align-items: center !important;
-  gap: 2rem;
-  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem; 
 }
 
 nav a {
-  color: var(--color-text) !important;
+  color: var(--color-text);
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 1.25rem; /* Corrected size scale to fit header natively */
   padding: 0.5rem 0.25rem;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
-  display: inline-flex;
-  align-items: center;
 }
 
 nav a:hover,
@@ -134,6 +111,7 @@ nav a:focus-visible {
   color: var(--color-primary);
   outline: none;
 }
+
 /* ---------- Banner ---------- */
 
 .banner-area {
