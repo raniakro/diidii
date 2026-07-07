@@ -43,7 +43,20 @@
         }
 
         /* --- Login Navbar Layout (Perfect Right Margin Spacing) --- */
-        .login-navbar-row {
+.w3-top {
+  position: relative;
+}
+
+.profile-badge {
+  display: none;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem;
+  text-align: right;
+}
+
+.w3-row.w3-padding {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,19 +70,26 @@
   width: auto;
 }
 
-        nav {
-            display: flex !important;
-            align-items: center !important;
-            gap: 2rem;
-        }
+nav {
+  display: flex;
+  gap: var(--space-md);
+}
 
-        nav a {
-            color: var(--color-text) !important;
-            font-family: var(--font-body);
-            font-weight: 500;
-            font-size: 1.25rem;
-            text-decoration: none;
-        }
+nav a {
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  border-bottom-color: var(--color-accent);
+  outline: none;
+}
 
         /* --- Container Details --- */
         .page-wrapper {
