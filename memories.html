@@ -42,7 +42,7 @@
             min-height: 100vh;
         }
 
-        /* --- Login/App Shared Navbar Layout (Perfect Edge Spacing) --- */
+        /* --- Navbar Layout --- */
         .login-navbar-row {
             display: flex !important;
             align-items: center !important;
@@ -73,7 +73,7 @@
             text-decoration: none;
         }
 
-        /* --- Canvas & Layout Context Blocks --- */
+        /* --- Canvas & Page Context Elements --- */
         .page-wrapper {
             flex: 1;
             display: flex;
@@ -82,7 +82,7 @@
                         radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
                         radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.3), transparent 65%), 
                         var(--color-bg);
-            padding: var(--space-xl) var(--space-sm);
+            padding: calc(var(--space-xl) + 40px) var(--space-sm) var(--space-xl); /* Balanced offset below the navbar */
             align-items: center;
         }
 
@@ -96,13 +96,27 @@
         .content-area h2 {
             font-family: var(--font-heading);
             font-weight: 500;
-            font-size: 2.5rem;
+            font-size: 2.75rem;
             color: var(--color-text);
             margin-top: 0;
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-sm);
         }
 
-        /* --- Warm, Accessible Memory Grid Layout --- */
+        /* --- Helpful User Alert Note --- */
+        .info-note {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            color: var(--color-text-soft);
+            max-width: 600px;
+            margin: 0 auto var(--space-lg) auto;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--color-border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        /* --- Memory Grid Cards Layout --- */
         .memory-grid {
             display: flex;
             flex-wrap: wrap;
@@ -204,6 +218,9 @@
     <div class="page-wrapper">
         <div class="content-area">
             <h2>Your Memories</h2>
+            <div class="info-note">
+                💡 When logged into your account, all pictures, audio clips, and videos you have uploaded will appear safely here.
+            </div>
             <div id="memories" class="memory-grid">
                 <div class="status-message">Loading memories...</div>
             </div>
@@ -224,17 +241,20 @@
                     const data = await response.json();
                     if (data.loggedIn) {
                         currentUser = data.username;
-                        document.getElementById('usernameDisplay').textContent = data.username;
-                        document.getElementById('profileBadge').style.display = 'block';
+                        
+                        const userDisplay = document.getElementById('usernameDisplay');
+                        const profileBadge = document.getElementById('profileBadge');
+                        
+                        if (userDisplay) userDisplay.textContent = data.username;
+                        if (profileBadge) profileBadge.style.display = 'block';
+                        
                         fetchMemories();
                     } else {
                         document.getElementById('memories').innerHTML = '<div class="status-message">Please log in to view memories.</div>';
                     }
                 }
             } catch (err) {
-                console.log("Testing environment: Bypassing dynamic server authentication check.");
-                // Optional: Uncomment for styling visual preview when server offline
-                // fetchMemories(); 
+                console.log("Testing environment setup running offline.");
             }
         }
 
@@ -294,7 +314,6 @@
             }
         }
 
-        // Execute initialization setup sequential routing
         checkLoginAndFetch();
     </script>
 </body>
