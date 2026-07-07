@@ -1,17 +1,22 @@
-
+/* ============================================
+   diidii — Memory Page Styles
+   Warm, calm, family-friendly, dementia-care aware
+   ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  /* Color tokens */
-  --color-bg: #FAF7F2;           /* warm paper */
-  --color-bg-soft: #F1EADD;      /* soft tan panel */
-  --color-primary: #3D5A52;      /* deep sage — trust, calm */
-  --color-primary-light: #6E8B82;
-  --color-accent: #C97B5A;       /* warm terracotta */
+  /* Color tokens — soft pastel watercolor, matching diidii's brand imagery */
+  --color-bg: #FDFBF8;           /* warm off-white, lets watercolor accents lead */
+  --color-bg-soft: #FBF3EE;      /* faint blush panel */
+  --color-primary: #6B7FA3;      /* dusty pastel blue — main brand tone */
+  --color-primary-light: #9FB2CE;
+  --color-accent: #E8A7A0;       /* soft blush pink accent */
+  --color-accent-2: #E8C97A;     /* soft sandy yellow, secondary accent */
+  --color-accent-3: #9BC1A8;     /* soft sage, tertiary accent */
   --color-text: #2C2C2C;
   --color-text-soft: #5A5A54;
-  --color-border: #E3D9C6;
+  --color-border: #EBE1D6;
   --color-white: #FFFFFF;
 
   /* Type */
@@ -70,12 +75,13 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-primary) !important;
+  background: var(--color-white) !important;
+  border-bottom: 1px solid var(--color-border);
   padding: 0.75rem 1.5rem !important;
 }
 
 .logo #logo-img img {
-  height: 66px;
+  height: 44px;
   width: auto;
 }
 
@@ -85,7 +91,7 @@ nav {
 }
 
 nav a {
-  color: var(--color-white);
+  color: var(--color-text);
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 1rem;
@@ -103,20 +109,26 @@ nav a:focus-visible {
 /* ---------- Banner ---------- */
 
 .banner-area {
-    background-image: url(https://img.pikbest.com/wp/202343/delicate-pattern-watercolor-painting-on-canvas-abstract-art-with-soft-rose-gradient-and-light-purple-pink-hues-featuring-a-fragment-of-artwork-against-lilac-patterned-texture-backdrop_9941141.jpg!sw800);
-    background-size: cover;
-    height: 70vh;
-    position: relative;
-    background-position: center center;
+  position: relative;
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 20%, rgba(232, 167, 160, 0.55), transparent 60%),
+    radial-gradient(ellipse 55% 75% at 85% 30%, rgba(107, 127, 163, 0.45), transparent 60%),
+    radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 201, 122, 0.4), transparent 65%),
+    radial-gradient(ellipse 50% 60% at 70% 80%, rgba(155, 193, 168, 0.4), transparent 60%),
+    var(--color-bg);
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+  overflow: hidden;
 }
 
 .banner-area h2 {
   font-family: var(--font-heading);
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-text);
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   margin: 0;
   letter-spacing: 0.01em;
+  position: relative;
 }
 
 /* ---------- Content / intro ---------- */
@@ -150,7 +162,7 @@ nav a:focus-visible {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: var(--space-md);
-  box-shadow: 0 2px 10px rgba(61, 90, 82, 0.06);
+  box-shadow: 0 2px 10px rgba(44, 44, 44, 0.06);
 }
 
 .column img {
@@ -175,8 +187,18 @@ nav a:focus-visible {
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 1.4rem;
-  color: var(--color-accent);
+  color: var(--color-text);
   margin: 0 0 var(--space-xs);
+  padding-left: var(--space-sm);
+  border-left: 4px solid var(--color-accent);
+}
+
+.picture-area .wrapper > div:nth-child(2) h4 {
+  border-left-color: var(--color-primary);
+}
+
+.picture-area .wrapper > div:nth-child(3) h4 {
+  border-left-color: var(--color-accent-2);
 }
 
 .picture-area p,
@@ -185,13 +207,17 @@ nav a:focus-visible {
   font-size: 1.05rem;
   color: var(--color-text-soft);
   margin: 0;
+  padding-left: var(--space-sm);
   display: block;
 }
 
 /* ---------- Background / CTA area ---------- */
 
 .background-area {
-  background: var(--color-primary);
+  background:
+    radial-gradient(ellipse 60% 90% at 80% 10%, rgba(155, 193, 168, 0.35), transparent 60%),
+    radial-gradient(ellipse 55% 80% at 10% 90%, rgba(107, 127, 163, 0.3), transparent 60%),
+    var(--color-bg-soft);
   padding: var(--space-xl) var(--space-md);
 }
 
@@ -199,7 +225,7 @@ nav a:focus-visible {
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
-  color: var(--color-white);
+  color: var(--color-text);
 }
 
 .background-area h1 {
@@ -207,20 +233,21 @@ nav a:focus-visible {
   font-weight: 500;
   font-size: clamp(1.6rem, 3.5vw, 2.25rem);
   margin: 0 0 var(--space-sm);
+  color: var(--color-text);
 }
 
 .background-area h2 {
   font-family: var(--font-heading);
   font-weight: 500;
   font-size: 1.3rem;
-  color: var(--color-white);
+  color: var(--color-primary);
   margin: var(--space-lg) 0 var(--space-xs);
 }
 
 .background-area p {
   font-family: var(--font-body);
   font-size: 1.05rem;
-  color: #E8EFEC;
+  color: var(--color-text-soft);
   margin: 0 0 var(--space-sm);
 }
 
