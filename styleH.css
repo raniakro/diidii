@@ -60,7 +60,6 @@ a {
 
 .w3-top {
   position: relative;
-  z-index: 100;
 }
 
 .profile-badge {
@@ -78,37 +77,32 @@ a {
   justify-content: space-between;
   background: var(--color-white) !important;
   border-bottom: 1px solid var(--color-border);
-  padding: 0.75rem 2rem !important; /* Balanced and comfortable spacing */
+  padding: 0.75rem 1.5rem !important;
 }
 
-/* Constrains logo sizing to fit perfectly inline with web navigation links */
-img#logo-img-tag,
 .logo #logo-img img {
-  height: 52px !important; 
-  width: auto !important;
-  display: block;
+  height: 44px;
+  width: auto;
 }
 
 nav {
   display: flex;
-  align-items: center;
-  gap: 2rem; 
+  gap: var(--space-md);
 }
 
 nav a {
   color: var(--color-text);
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 1.25rem; /* Corrected size scale to fit header natively */
+  font-size: 1rem;
   padding: 0.5rem 0.25rem;
   border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 nav a:hover,
 nav a:focus-visible {
   border-bottom-color: var(--color-accent);
-  color: var(--color-primary);
   outline: none;
 }
 
@@ -118,9 +112,9 @@ nav a:focus-visible {
   position: relative;
   background:
     radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.55), transparent 60%),
-    radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.5), transparent 60%),
-    radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.45), transparent 65%),
-    radial-gradient(ellipse 50% 60% at 70% 80%, rgba(200, 180, 230, 0.4), transparent 60%),
+    radial-gradient(ellipse 55% 75% at 85% 30%, rgba(150, 170, 220, 0.45), transparent 60%),
+    radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 167, 190, 0.4), transparent 65%),
+    radial-gradient(ellipse 50% 60% at 70% 80%, rgba(190, 175, 225, 0.4), transparent 60%),
     var(--color-bg);
   padding: var(--space-xl) var(--space-md);
   text-align: center;
@@ -221,8 +215,8 @@ nav a:focus-visible {
 
 .background-area {
   background:
-    radial-gradient(ellipse 60% 90% at 80% 10%, rgba(210, 170, 220, 0.35), transparent 60%),
-    radial-gradient(ellipse 55% 80% at 10% 90%, rgba(160, 190, 230, 0.3), transparent 60%),
+    radial-gradient(ellipse 60% 90% at 80% 10%, rgba(190, 175, 225, 0.35), transparent 60%),
+    radial-gradient(ellipse 55% 80% at 10% 90%, rgba(150, 170, 220, 0.3), transparent 60%),
     var(--color-bg-soft);
   padding: var(--space-xl) var(--space-md);
 }
@@ -263,15 +257,11 @@ nav a:focus-visible {
   .w3-row.w3-padding {
     flex-direction: column;
     gap: var(--space-sm);
-    padding: 1rem !important;
   }
   nav {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.25rem;
-  }
-  nav a {
-    font-size: 1.1rem;
+    gap: var(--space-sm);
   }
   body {
     font-size: 17px;
