@@ -1,34 +1,259 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="styleHH.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="style.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Upload & Record - diidii</title>
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
 
+        :root {
+            --color-bg: #FDFBF8;
+            --color-bg-soft: #FBF3EE;
+            --color-primary: #6B7FA3;
+            --color-accent: #E8A7A0;
+            --color-accent-2: #E8C97A;
+            --color-text: #2C2C2C;
+            --color-text-soft: #5A5A54;
+            --color-border: #EBE1D6;
+            --color-white: #FFFFFF;
+            --font-heading: 'Fraunces', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --space-sm: 1rem;
+            --space-md: 1.75rem;
+            --space-lg: 3rem;
+            --space-xl: 5rem;
+            --radius: 16px;
+        }
 
-<!-- Header Menu of the Page -->
+        * { 
+            box-sizing: border-box; 
+        }
 
-    <!-- Top header menu containing logo and Navigation bar a href="#default" class="logo">CompanyLogo</a>--> 
-        <!-- Navigation Menu -->
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-        <body> 
-            <div class="w3-top">
-                <div class="w3-row w3-padding w3-purple">  
-                      <div class = "logo"> 
-                          <div id = "logo-img">
-                              <img src = "logo_square-removebg-preview copy.png">
-                          </div>
-                      </div>
-                  <nav>
-                      <a href="help.html">Help</a>
-                      <a href="conect.html">Upload</a>
-                      <a href="memories.html">Memories</a>
-                      <a href="login.html">Login</a>
-                      <a href="index.html">Home</a>
-                  </nav>
-                </div>
-            </div>
-              
-            </body>
+        /* --- Unified App Navbar Layout --- */
+        .login-navbar-row {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            background: var(--color-white) !important;
+            border-bottom: 1px solid var(--color-border);
+            padding: 0 4.5rem !important;
+            height: 80px !important;
+        }
+
+        .logo, #logo-img, .logo #logo-img img {
+            height: 44px !important;
+            max-height: 44px !important;
+            width: auto !important;
+        }
+
+        nav {
+            display: flex !important;
+            align-items: center !important;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--color-text) !important;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1.25rem;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            padding: 0.25rem 0;
+            transition: border-color 0.2s ease;
+        }
+
+        nav a:hover {
+            border-bottom-color: var(--color-accent);
+        }
+
+        /* --- Watercolor Canvas Core Layout Wrapper --- */
+        .page-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 80px; /* Offset below fixed nav */
+            background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), 
+                        radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
+                        var(--color-bg);
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-sm);
+        }
+
+        /* --- Section Content Cards --- */
+        .section {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 15px rgba(44, 44, 44, 0.03);
+            text-align: left;
+        }
+
+        .section h2 {
+            font-family: var(--font-heading);
+            color: var(--color-text);
+            margin-top: 0;
+            margin-bottom: var(--space-md);
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        .section h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+            margin-top: 0;
+            margin-bottom: var(--space-sm);
+            font-size: 1.75rem;
+            font-weight: 500;
+        }
+
+        /* --- Content List Sizing --- */
+        ol {
+            padding-left: 1.25rem;
+            margin: 0;
+        }
+
+        li {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            color: var(--color-text-soft);
+            padding: var(--space-xs) 0;
+        }
+
+        /* --- Accessible System Inputs & Previews --- */
+        input[type="file"] {
+            margin-bottom: var(--space-sm);
+        }
+
+        .media-preview {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            margin-top: var(--space-xs);
+        }
+
+        .file-name-input {
+            display: block;
+            width: 100%;
+            max-width: 320px;
+            padding: 0.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            margin: var(--space-xs) 0 var(--space-sm) 0;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+        }
+
+        video, audio {
+            display: block;
+            max-width: 100%;
+            border-radius: 8px;
+            margin: var(--space-sm) 0;
+            background-color: #000;
+        }
+
+        audio {
+            background-color: transparent;
+        }
+
+        /* --- Interactive Application Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.05rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+            margin-top: var(--space-xs);
+            margin-right: 8px;
+        }
+
+        .btn-primary { background-color: var(--color-primary); color: var(--color-white); }
+        .btn-success { background-color: var(--color-accent); color: var(--color-text); }
+        .btn-warning { background-color: var(--color-accent-2); color: var(--color-text); }
+        .btn-info { background-color: var(--color-bg-soft); color: var(--color-text); border: 1px solid var(--color-border); }
+
+        .btn:hover { opacity: 0.9; }
+        .btn:active { transform: scale(0.99); }
+
+        /* --- Soft Instructive Explainer Blocks --- */
+        .tutorial { 
+            margin-top: var(--space-md);
+            background-color: var(--color-bg-soft);
+            padding: var(--space-sm) var(--space-md);
+            border-left: 4px solid var(--color-accent);
+            font-size: 0.95rem;
+            color: var(--color-text-soft);
+            border-radius: 0 8px 8px 0;
+            line-height: 1.6;
+        }
+
+        .reminder {
+            background-color: var(--color-bg-soft);
+            padding: var(--space-sm) var(--space-md);
+            border-left: 4px solid var(--color-primary);
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        /* --- Footer Layout --- */
+        footer {
+            text-align: center;
+            padding: var(--space-md);
+            background-color: var(--color-white);
+            color: var(--color-text-soft);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        @media (max-width: 640px) {
+            .login-navbar-row {
+                padding: 0 1.5rem !important;
+                flex-direction: column;
+                height: auto !important;
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+                gap: 1rem;
+            }
+            .page-wrapper { margin-top: 140px; }
+            nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            nav a { font-size: 1.1rem; }
+            .btn { width: 100%; margin-bottom: 8px; }
+        }
+    </style>
+    </head>
 
     <!-- Help Section -->
     <!-- Main Content Container -->
