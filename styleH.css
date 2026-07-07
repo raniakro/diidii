@@ -79,15 +79,16 @@ a {
 .w3-row.w3-padding {
   background: var(--color-white) !important;
   border-bottom: 1px solid var(--color-border);
-  padding: 0 var(--space-md) !important; 
+  padding: 0 !important; /* Let nav-container handle the outer margins */
   height: 80px !important;    
 }
 
 /* This new layout structural block keeps everything aligned across all templates */
+/* This centers the elements dynamically while extending gracefully to both screen edges */
 .nav-container {
-  max-width: 960px; /* Forces matching alignment with your page content width */
   width: 100%;
-  margin: 0 auto;
+  padding-left: 2.5rem;   /* Gives the logo breathing room from the left screen edge */
+  padding-right: 2.5rem;  /* Gives the menu breathing room from the right screen edge */
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
