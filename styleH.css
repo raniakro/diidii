@@ -58,6 +58,8 @@ a {
 
 /* ---------- Top bar / nav ---------- */
 
+/* ---------- Top bar / nav ---------- */
+
 .w3-top {
   position: relative;
   z-index: 100;
@@ -73,41 +75,47 @@ a {
 }
 
 .w3-row.w3-padding {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
   background: var(--color-white) !important;
   border-bottom: 1px solid var(--color-border);
-  padding: 0.75rem 2rem !important; /* Balanced and comfortable spacing */
+  padding: 0 2rem !important; /* Removed vertical padding so height governs alignment */
+  height: 80px !important;    /* Locks the navbar layout height identically across pages */
 }
 
-/* Constrains logo sizing to fit perfectly inline with web navigation links */
-/* Constrains logo sizing to fit perfectly inline with web navigation links */
+/* Forces the logo box layout wrappers to remain perfectly matching on all pages */
 img#logo-img-tag,
 .logo,
 .logo div,
 #logo-img,
 .logo #logo-img img {
-  height: 60px !important; 
+  height: 44px !important;    /* Clean, uniform proportional size */
+  max-height: 44px !important;
   width: auto !important;
-  max-height: 60px !important;
   display: inline-block;
   vertical-align: middle;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+
 nav {
-  display: flex;
-  align-items: center;
-  gap: 2rem; 
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem;
+  height: 100%;
 }
 
 nav a {
   color: var(--color-text);
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 1.25rem; /* Corrected size scale to fit header natively */
+  font-size: 1.25rem;
   padding: 0.5rem 0.25rem;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
 nav a:hover,
@@ -116,7 +124,6 @@ nav a:focus-visible {
   color: var(--color-primary);
   outline: none;
 }
-
 /* ---------- Banner ---------- */
 
 .banner-area {
