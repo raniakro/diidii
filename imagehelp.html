@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Upload & Record - diidii</title>
-
+    <title>Image Help Guide - diidii</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
 
@@ -44,7 +43,7 @@
             min-height: 100vh;
         }
 
-        /* --- Unified App Navbar Layout --- */
+        /* --- Navbar Layout --- */
         .login-navbar-row {
             display: flex !important;
             align-items: center !important;
@@ -82,12 +81,12 @@
             border-bottom-color: var(--color-accent);
         }
 
-        /* --- Watercolor Canvas Core Layout Wrapper --- */
+        /* --- Page Wrapper Canvas Layout --- */
         .page-wrapper {
             flex: 1;
             display: flex;
             flex-direction: column;
-            margin-top: 80px; /* Offset below fixed nav */
+            margin-top: 80px; /* Offset for fixed top navbar */
             background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), 
                         radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
                         var(--color-bg);
@@ -100,7 +99,6 @@
             padding: var(--space-xl) var(--space-sm);
         }
 
-        /* --- Section Content Cards --- */
         .section {
             background-color: var(--color-white);
             border: 1px solid var(--color-border);
@@ -108,28 +106,26 @@
             margin-bottom: var(--space-md);
             border-radius: var(--radius);
             box-shadow: 0 4px 15px rgba(44, 44, 44, 0.03);
-            text-align: left;
         }
 
-        .section h2 {
+        h3 {
             font-family: var(--font-heading);
-            color: var(--color-text);
+            color: var(--color-primary);
             margin-top: 0;
             margin-bottom: var(--space-md);
             font-size: 2rem;
             font-weight: 500;
         }
 
-        .section h3 {
+        h4 {
             font-family: var(--font-heading);
-            color: var(--color-primary);
-            margin-top: 0;
+            color: var(--color-text);
+            font-size: 1.4rem;
+            margin-top: var(--space-md);
             margin-bottom: var(--space-sm);
-            font-size: 1.75rem;
             font-weight: 500;
         }
 
-        /* --- Content List Sizing --- */
         ol {
             padding-left: 1.25rem;
             margin: 0;
@@ -137,105 +133,51 @@
 
         li {
             font-family: var(--font-body);
-            font-size: 1.05rem;
-            color: var(--color-text-soft);
-            padding: var(--space-xs) 0;
-        }
-
-        /* --- Accessible System Inputs & Previews --- */
-        input[type="file"] {
-            margin-bottom: var(--space-sm);
-        }
-
-        .media-preview {
-            max-width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
-            margin-top: var(--space-xs);
-        }
-
-        .file-name-input {
-            display: block;
-            width: 100%;
-            max-width: 320px;
-            padding: 0.5rem;
-            border: 1px solid var(--color-border);
-            border-radius: 6px;
-            margin: var(--space-xs) 0 var(--space-sm) 0;
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-        }
-
-        video, audio {
-            display: block;
-            max-width: 100%;
-            border-radius: 8px;
-            margin: var(--space-sm) 0;
-            background-color: #000;
-        }
-
-        audio {
-            background-color: transparent;
-        }
-
-        /* --- Interactive Application Buttons --- */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: var(--font-body);
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            font-size: 1.05rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: opacity 0.2s ease, transform 0.1s ease;
-            margin-top: var(--space-xs);
-            margin-right: 8px;
-        }
-
-        .btn-primary { background-color: var(--color-primary); color: var(--color-white); }
-        .btn-success { background-color: var(--color-accent); color: var(--color-text); }
-        .btn-warning { background-color: var(--color-accent-2); color: var(--color-text); }
-        .btn-info { background-color: var(--color-bg-soft); color: var(--color-text); border: 1px solid var(--color-border); }
-
-        .btn:hover { opacity: 0.9; }
-        .btn:active { transform: scale(0.99); }
-
-        /* --- Soft Instructive Explainer Blocks --- */
-        .tutorial { 
-            margin-top: var(--space-md);
-            background-color: var(--color-bg-soft);
-            padding: var(--space-sm) var(--space-md);
-            border-left: 4px solid var(--color-accent);
-            font-size: 0.95rem;
-            color: var(--color-text-soft);
-            border-radius: 0 8px 8px 0;
-            line-height: 1.6;
-        }
-
-        .reminder {
-            background-color: var(--color-bg-soft);
-            padding: var(--space-sm) var(--space-md);
-            border-left: 4px solid var(--color-primary);
-            border-radius: 0 8px 8px 0;
             font-size: 1.1rem;
             color: var(--color-text);
-            margin-bottom: var(--space-sm);
+            padding: var(--space-sm) 0;
         }
 
-        /* --- Footer Layout --- */
-        footer {
-            text-align: center;
-            padding: var(--space-md);
-            background-color: var(--color-white);
-            color: var(--color-text-soft);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--color-border);
+        /* Constrains walk-through instruction imagery to look clean and un-stretched */
+        li img {
+            display: block;
+            max-width: 100%;
+            max-height: 240px;
+            object-fit: contain;
+            margin: var(--space-sm) 0;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+        }
+
+        .video-container-box {
+            position: relative; 
+            width: 100%; 
+            height: 0; 
+            padding-top: 56.25%; /* Clean 16:9 responsive display aspect standard ratio */
+            box-shadow: 0 4px 15px rgba(63,69,81,0.12); 
+            margin-top: var(--space-md); 
+            overflow: hidden;
+            border-radius: var(--radius); 
+            background: #000;
+        }
+
+        .video-container-box iframe {
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            top: 0; 
+            left: 0; 
+            border: none;
+        }
+
+        footer { 
+            text-align: center; 
+            padding: var(--space-md); 
+            background: var(--color-white); 
+            border-top: 1px solid var(--color-border); 
+            font-size: 0.9rem; 
+            color: var(--color-text-soft); 
+            margin-top: auto;
         }
 
         @media (max-width: 640px) {
@@ -250,44 +192,67 @@
             .page-wrapper { margin-top: 140px; }
             nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
             nav a { font-size: 1.1rem; }
-            .btn { width: 100%; margin-bottom: 8px; }
         }
     </style>
-    </head>
+</head>
+<body>
 
-    <!-- Help Section -->
-    <!-- Main Content Container -->
-   
+    <div class="w3-top">
+        <div class="w3-row w3-padding w3-white login-navbar-row">  
+            <div class="logo"> 
+                <div id="logo-img">
+                    <img src="logo_square-removebg-preview copy.png" alt="diidii logo">
+                </div>
+            </div>
+            <nav>
+                <a href="help.html">Help</a>
+                <a href="conect.html">Upload</a>
+                <a href="memories.html">Memories</a>
+                <a href="login.html">Login</a>
+                <a href="index.html">Home</a>
+            </nav>
+        </div>
+    </div>
 
+    <div class="page-wrapper">
+        <div class="container">
 
-        <div class="tutorial">
-                <h3>How to Upload photos on diidii:</h3>
+            <div class="section">
+                <h3>How to Upload Photos on diidii</h3>
                 <ol>
-                    <li>Click on the "Choose File" button</li>
-                    <img src="chooseAFile.png" alt="Choose File Button" width="1000" height="1000">
+                    <li>
+                        Click on the "Choose File" button
+                        <img src="chooseAFile.png" alt="Choose File Button Step">
+                    </li>
 
-                    <li>Select "Photos" on the left side of the menu</li>
-                    <img src="chooseAPhoto.png" alt="Photos Menu" width="1000" height="1000">
+                    <li>
+                        Select "Photos" on the left side of the menu
+                        <img src="chooseAPhoto.png" alt="Photos Menu Selection Step">
+                    </li>
 
                     <li>Choose a photo and click "Open"</li>
-                    
 
-                    <li>Click "Upload Image"</li>
-                    <img src="uploadImage.png" alt="Upload Button" width="1000" height="1000">
+                    <li>
+                        Click "Upload Image"
+                        <img src="uploadImage.png" alt="Upload Action Step">
+                    </li>
                 </ol>
             </div>
-   
-            &nbsp;&nbsp;
-            <h4> Watch this Video for Detailed Help on how to Upload Images</h4>
-        
-            <div class = "centerc">
-            <div style="position: relative; width: 86%; height: 0; padding-top: 50.2500%;
-            padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; overflow: hidden;
-            border-radius: 8px; will-change: transform;">
-             <iframe loading="lazy" style="position: absolute; width: 80%; height: 80%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-               src="https://www.canva.com/design/DAGW8LdscWE/GXt2X2G0XxmNMYJb5gzFqQ/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-             </iframe>
-           </div>
+
+            <div class="section" style="text-align: center;">
+                <h4>Watch this Video for Detailed Help on How to Upload Images</h4>
+                <div class="video-container-box">
+                    <iframe loading="lazy" src="https://www.canva.com/design/DAGW8LdscWE/GXt2X2G0XxmNMYJb5gzFqQ/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+                </div>
+            </div>
+            
         </div>
-        
+
+        <footer>
+            &copy; 2024 Diidii App. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>
    
