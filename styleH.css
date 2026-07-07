@@ -103,9 +103,11 @@ nav a:focus-visible {
 /* ---------- Banner ---------- */
 
 .banner-area {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-  padding: var(--space-xl) var(--space-md);
-  text-align: center;
+    background-image: url(https://img.pikbest.com/wp/202343/delicate-pattern-watercolor-painting-on-canvas-abstract-art-with-soft-rose-gradient-and-light-purple-pink-hues-featuring-a-fragment-of-artwork-against-lilac-patterned-texture-backdrop_9941141.jpg!sw800);
+    background-size: cover;
+    height: 70vh;
+    position: relative;
+    background-position: center center;
 }
 
 .banner-area h2 {
