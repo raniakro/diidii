@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Memories</title>
+    <title>Login</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
@@ -42,138 +42,132 @@
             min-height: 100vh;
         }
 
-        /* --- Navbar Layout --- */
-        .login-navbar-row {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            background: var(--color-white) !important;
-            border-bottom: 1px solid var(--color-border);
-            padding: 0 4.5rem !important;
-            height: 80px !important;
-        }
+        /* --- Login Navbar Layout (Perfect Right Margin Spacing) --- */
+.w3-top {
+  position: relative;
+}
 
-        .logo, #logo-img, .logo #logo-img img {
-            height: 44px !important;
-            max-height: 44px !important;
-            width: auto !important;
-        }
+.profile-badge {
+  display: none;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem;
+  text-align: right;
+}
 
-        nav {
-            display: flex !important;
-            align-items: center !important;
-            gap: 2rem;
-        }
+.w3-row.w3-padding {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-white) !important;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1.5rem !important;
+}
 
-        nav a {
-            color: var(--color-text) !important;
-            font-family: var(--font-body);
-            font-weight: 500;
-            font-size: 1.25rem;
-            text-decoration: none;
-        }
+.logo #logo-img img {
+  height: 44px;
+  width: auto;
+}
 
-        /* --- Canvas & Page Context Elements --- */
+nav {
+  display: flex;
+  gap: var(--space-md);
+}
+
+nav a {
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  border-bottom-color: var(--color-accent);
+  outline: none;
+}
+
+        /* --- Container Details --- */
         .page-wrapper {
             flex: 1;
             display: flex;
-            flex-direction: column;
             background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), 
                         radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
                         radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.3), transparent 65%), 
                         var(--color-bg);
-            padding: calc(var(--space-xl) + 40px) var(--space-sm) var(--space-xl); /* Balanced offset below the navbar */
             align-items: center;
+            justify-content: center;
+            padding: var(--space-xl) var(--space-sm);
         }
 
         .content-area {
-            max-width: 1024px;
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: var(--space-lg) var(--space-md);
+            box-shadow: 0 4px 20px rgba(44, 44, 44, 0.05);
+            max-width: 460px;
             width: 100%;
-            margin: 0 auto;
-            text-align: center;
         }
 
         .content-area h2 {
             font-family: var(--font-heading);
             font-weight: 500;
-            font-size: 2.75rem;
-            color: var(--color-text);
-            margin-top: 0;
-            margin-bottom: var(--space-sm);
+            font-size: 2.25rem;
+            text-align: center;
+            margin: 0 0 var(--space-md);
         }
 
-        /* --- Helpful User Alert Note --- */
-        .info-note {
-            font-family: var(--font-body);
-            font-size: 1.05rem;
-            color: var(--color-text-soft);
-            max-width: 600px;
-            margin: 0 auto var(--space-lg) auto;
-            background-color: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--color-border);
-            padding: 0.75rem 1.5rem;
-            border-radius: 30px;
-            display: inline-block;
+        .input-group { 
+            margin-bottom: var(--space-sm); 
+        }
+        
+        .content-area label { 
+            display: block; 
+            font-size: 1rem; 
+            color: var(--color-text-soft); 
+            margin-bottom: 0.5rem; 
         }
 
-        /* --- Memory Grid Cards Layout --- */
-        .memory-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            justify-content: center;
-            padding: var(--space-sm);
+        .content-area input[type="text"], 
+        .content-area input[type="password"] {
+            width: 100%; 
+            padding: 0.85rem 1rem; 
+            border: 1px solid var(--color-border); 
+            border-radius: 8px; 
+            background-color: var(--color-bg); 
+            font-size: 1.1rem;
         }
 
-        .memory-item {
-            flex: 1 1 260px;
-            max-width: 280px;
-            background: var(--color-white);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            padding: var(--space-sm);
-            box-shadow: 0 4px 15px rgba(44, 44, 44, 0.04);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .form-actions { 
+            display: flex; 
+            flex-direction: column; 
+            gap: var(--space-sm); 
+            margin-top: var(--space-md); 
         }
-
-        .memory-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(44, 44, 44, 0.08);
+        
+        button { 
+            font-family: var(--font-body); 
+            padding: 0.85rem; 
+            border: none; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            border-radius: 8px; 
         }
-
-        .memory-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: var(--space-sm);
-            border: 1px solid var(--color-border);
+        
+        button[type="submit"] { 
+            background-color: var(--color-primary); 
+            color: var(--color-white); 
         }
-
-        .memory-item video, 
-        .memory-item audio {
-            width: 100%;
-            margin-bottom: var(--space-sm);
-            border-radius: 8px;
-        }
-
-        .file-name {
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: var(--color-text);
-            margin: 5px 0;
-            word-break: break-all;
-            text-align: left;
-            padding-left: 4px;
-        }
-
-        .status-message {
-            font-family: var(--font-body);
-            color: var(--color-text-soft);
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-top: var(--space-md);
+        
+        button#signupBtn { 
+            background-color: var(--color-bg-soft); 
+            color: var(--color-text); 
+            border: 1px solid var(--color-border); 
         }
 
         footer { 
@@ -184,21 +178,12 @@
             font-size: 0.9rem; 
             color: var(--color-text-soft); 
         }
-
-        @media (max-width: 640px) {
-            .login-navbar-row {
-                padding: 0 1.5rem !important;
-            }
-            .memory-item {
-                max-width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
 
     <div class="w3-top">
-        <div class="profile-badge" id="profileBadge" style="display: none;">Logged in as <span id="usernameDisplay"></span></div>
+        <div class="profile-badge" id="profileBadge" style="display: none;"><span id="usernameDisplay"></span></div>
         <div class="w3-row w3-padding w3-white login-navbar-row">  
             <div class="logo"> 
                 <div id="logo-img">
@@ -215,7 +200,7 @@
         </div>
     </div>
 
-    <div class="page-wrapper">
+   <div class="page-wrapper">
         <div class="content-area">
             <h2>Your Memories</h2>
             <div class="info-note">
