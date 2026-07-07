@@ -4,176 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="styleH.css">
+    <link rel="stylesheet" href="styleLogin.css">
     <title>Login</title>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
-
-        :root {
-            --color-bg: #FDFBF8;
-            --color-bg-soft: #FBF3EE;
-            --color-primary: #6B7FA3;
-            --color-primary-light: #9FB2CE;
-            --color-accent: #E8A7A0;
-            --color-accent-2: #E8C97A;
-            --color-text: #2C2C2C;
-            --color-text-soft: #5A5A54;
-            --color-border: #EBE1D6;
-            --color-white: #FFFFFF;
-
-            --font-heading: 'Fraunces', Georgia, serif;
-            --font-body: 'Inter', -apple-system, sans-serif;
-
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 1.75rem;
-            --space-lg: 3rem;
-            --space-xl: 5rem;
-            --radius: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: var(--font-body);
-            background: var(--color-bg);
-            color: var(--color-text);
-            font-size: 18px;
-            line-height: 1.65;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* ---------- Main Page Canvas Background ---------- */
-        .page-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background:
-                radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%),
-                radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%),
-                radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.3), transparent 65%),
-                var(--color-bg);
-            padding: var(--space-xl) var(--space-sm);
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ---------- Centered Card Box Container ---------- */
-        .content-area {
-            background: var(--color-white);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            padding: var(--space-lg) var(--space-md);
-            box-shadow: 0 4px 20px rgba(44, 44, 44, 0.05);
-            max-width: 460px;
-            width: 100%;
-            text-align: left;
-        }
-
-        .content-area h2 {
-            font-family: var(--font-heading);
-            font-weight: 500;
-            font-size: 2.25rem;
-            color: var(--color-text);
-            margin-top: 0;
-            margin-bottom: var(--space-md);
-            text-align: center;
-        }
-
-        .input-group {
-            margin-bottom: var(--space-sm);
-        }
-
-        .content-area label {
-            display: block;
-            font-family: var(--font-body);
-            font-weight: 500;
-            font-size: 1rem;
-            color: var(--color-text-soft);
-            margin-bottom: var(--space-xs);
-        }
-
-        /* ---------- Styled Form Fields ---------- */
-        .content-area input[type="text"],
-        .content-area input[type="password"] {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            display: block;
-            border: 1px solid var(--color-border);
-            box-sizing: border-box;
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            color: var(--color-text);
-            border-radius: 8px;
-            background-color: var(--color-bg);
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .content-area input[type="text"]:focus,
-        .content-area input[type="password"]:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(107, 127, 163, 0.15);
-        }
-
-        /* ---------- Balanced Form Buttons ---------- */
-        .form-actions {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-            margin-top: var(--space-md);
-        }
-
-        .content-area button {
-            font-family: var(--font-body);
-            font-weight: 500;
-            padding: 0.85rem;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            transition: opacity 0.2s, transform 0.1s;
-        }
-
-        .content-area button[type="submit"] {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-        }
-
-        .content-area button#signupBtn {
-            background-color: var(--color-bg-soft);
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
-        }
-
-        .content-area button:hover {
-            opacity: 0.9;
-        }
-
-        /* ---------- Footer Styling ---------- */
-        footer {
-            text-align: center;
-            padding: var(--space-md);
-            background: var(--color-white);
-            border-top: 1px solid var(--color-border);
-            font-size: 0.9rem;
-            color: var(--color-text-soft);
-        }
-    </style>
 </head>
 <body>
+    <stye>@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
 
-   <div class="w3-top">
-    <div class="profile-badge" id="profileBadge">Logged in as <span id="usernameDisplay"></span></div>
-    <div class="w3-row w3-padding w3-white">  
-        <div class="nav-container">
+:root {
+  --color-bg: #FDFBF8;
+  --color-bg-soft: #FBF3EE;
+  --color-primary: #6B7FA3;
+  --color-accent: #E8A7A0;
+  --color-text: #2C2C2C;
+  --color-text-soft: #5A5A54;
+  --color-border: #EBE1D6;
+  --color-white: #FFFFFF;
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --space-sm: 1rem;
+  --space-md: 1.75rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Login Navbar Layout (Perfect Right Margin Spacing) --- */
+.login-navbar-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: var(--color-white) !important;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 4.5rem !important; /* Matches look of login page screenshot edges */
+  height: 80px !important;
+}
+
+.logo, #logo-img, .logo #logo-img img {
+  height: 44px !important;
+  max-height: 44px !important;
+  width: auto !important;
+}
+
+nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--color-text) !important;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+/* --- Container Details --- */
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.3), transparent 65%), var(--color-bg);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-sm);
+}
+
+.content-area {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-lg) var(--space-md);
+  box-shadow: 0 4px 20px rgba(44, 44, 44, 0.05);
+  max-width: 460px;
+  width: 100%;
+}
+
+.content-area h2 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 2.25rem;
+  text-align: center;
+  margin: 0 0 var(--space-md);
+}
+
+.input-group { margin-bottom: var(--space-sm); }
+.content-area label { display: block; font-size: 1rem; color: var(--color-text-soft); margin-bottom: 0.5rem; }
+
+.content-area input[type="text"], .content-area input[type="password"] {
+  width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; background-color: var(--color-bg); font-size: 1.1rem;
+}
+
+.form-actions { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
+button { font-family: var(--font-body); padding: 0.85rem; border: none; cursor: pointer; font-size: 1.1rem; border-radius: 8px; }
+button[type="submit"] { background-color: var(--color-primary); color: var(--color-white); }
+button#signupBtn { background-color: var(--color-bg-soft); color: var(--color-text); border: 1px solid var(--color-border); }
+
+footer { text-align: center; padding: var(--space-md); background: var(--color-white); border-top: 1px solid var(--color-border); font-size: 0.9rem; color: var(--color-text-soft); }</stye>
+    <div class="w3-top">
+        <div class="profile-badge" id="profileBadge">Logged in as <span id="usernameDisplay"></span></div>
+        <div class="w3-row w3-padding w3-white login-navbar-row">  
             <div class="logo"> 
                 <div id="logo-img">
                     <img src="logo_square-removebg-preview copy.png" alt="diidii logo">
@@ -188,7 +130,6 @@
             </nav>
         </div>
     </div>
-</div>
 
     <div class="page-wrapper">
         <div class="content-area">
@@ -216,63 +157,15 @@
         &copy; 2024 Diidii App. All rights reserved.
     </footer>
 
-<script>
-    // Check if the user is logged in and update the profile badge instantly
-    fetch('/check-login')
-        .then(response => response.json())
-        .then(data => {
-            if (data.loggedIn) {
-                const userDisplay = document.getElementById('usernameDisplay');
-                const badge = document.getElementById('profileBadge');
-                if (userDisplay) userDisplay.textContent = data.username;
-                if (badge) badge.style.display = 'block';
-            }
-        }).catch(err => console.log("Login check skipped."));
-
-    // Your existing Login form submission listener
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-        });
-
-        if (response.ok) {
-            alert('Login successful!');
-            window.location.href = 'index.html';
-        } else {
-            alert('Login failed. Please check your username and password.');
-        }
-    });
-
-    // Your existing Sign Up button listener
-    document.getElementById('signupBtn').addEventListener('click', async () => {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        if (!username || !password) {
-            alert('Please enter both username and password');
-            return;
-        }
-
-        const response = await fetch('/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-        });
-
-        if (response.ok) {
-            alert('Sign up successful! Please login.');
-            document.getElementById('loginForm').reset();
-        } else {
-            const error = await response.text();
-            alert(error);
-        }
-    });
-</script>
+    <script>
+        fetch('/check-login')
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    document.getElementById('usernameDisplay').textContent = data.username;
+                    document.getElementById('profileBadge').style.display = 'block';
+                }
+            }).catch(err => console.log("Login verification skipped."));
+    </script>
 </body>
 </html>
