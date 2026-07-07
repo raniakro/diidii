@@ -82,13 +82,18 @@ a {
 }
 
 /* Constrains logo sizing to fit perfectly inline with web navigation links */
+/* Constrains logo sizing to fit perfectly inline with web navigation links */
 img#logo-img-tag,
+.logo,
+.logo div,
+#logo-img,
 .logo #logo-img img {
-  height: 52px !important; 
+  height: 60px !important; 
   width: auto !important;
-  display: block;
+  max-height: 60px !important;
+  display: inline-block;
+  vertical-align: middle;
 }
-
 nav {
   display: flex;
   align-items: center;
