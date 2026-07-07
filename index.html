@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Memories</title>
+    <title>Home - diidii</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
@@ -14,6 +14,7 @@
             --color-bg-soft: #FBF3EE;
             --color-primary: #6B7FA3;
             --color-accent: #E8A7A0;
+            --color-accent-2: #E8C97A;
             --color-text: #2C2C2C;
             --color-text-soft: #5A5A54;
             --color-border: #EBE1D6;
@@ -71,113 +72,164 @@
             font-weight: 500;
             font-size: 1.25rem;
             text-decoration: none;
+            border-bottom: 2px solid transparent;
+            padding: 0.25rem 0;
+            transition: border-color 0.2s ease;
         }
 
-        /* --- Canvas & Page Context Elements --- */
+        nav a:hover {
+            border-bottom-color: var(--color-accent);
+        }
+
+        /* --- Page Wrapper Canvas Layout --- */
         .page-wrapper {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), 
-                        radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
-                        radial-gradient(ellipse 70% 90% at 50% 100%, rgba(232, 180, 210, 0.3), transparent 65%), 
-                        var(--color-bg);
-            padding: calc(var(--space-xl) + 40px) var(--space-sm) var(--space-xl); /* Balanced offset below the navbar */
-            align-items: center;
+            margin-top: 80px; /* Offset for fixed top navbar */
         }
 
+        /* --- Banner Area --- */
+        .banner-area {
+            background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), 
+                        radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
+                        var(--color-bg);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+
+        .banner-area h2 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        /* --- Content Layout --- */
         .content-area {
-            max-width: 1024px;
+            max-width: 960px;
             width: 100%;
             margin: 0 auto;
+            padding: var(--space-xl) var(--space-md);
             text-align: center;
         }
 
         .content-area h2 {
             font-family: var(--font-heading);
             font-weight: 500;
-            font-size: 2.75rem;
-            color: var(--color-text);
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            color: var(--color-primary);
             margin-top: 0;
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-xl);
         }
 
-        /* --- Helpful User Alert Note --- */
-      /* --- Helpful User Alert Note --- */
-.info-note {
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    color: #4A5568; /* Slightly darker grey for better readability */
-    max-width: 650px;
-    margin: var(--space-md) auto var(--space-lg) auto;
-    background-color: #FFFDF9; /* solid, warm tint instead of transparent */
-    border: 2px solid var(--color-border); /* Slightly thicker border */
-    padding: 1rem 2rem;
-    border-radius: var(--radius); /* Matches your page container curvature scale */
-    display: inline-block;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); /* Very soft shadow to make it pop */
-    text-align: left; /* Keeps the text alignment easy to read */
-}
-        /* --- Memory Grid Cards Layout --- */
-        .memory-grid {
+        .row {
             display: flex;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: var(--space-md);
             justify-content: center;
-            padding: var(--space-sm);
         }
 
-        .memory-item {
-            flex: 1 1 260px;
-            max-width: 280px;
+        .column {
+            flex: 1 1 220px;
+            max-width: 260px;
             background: var(--color-white);
             border: 1px solid var(--color-border);
             border-radius: var(--radius);
-            padding: var(--space-sm);
+            padding: var(--space-md);
             box-shadow: 0 4px 15px rgba(44, 44, 44, 0.04);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .memory-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(44, 44, 44, 0.08);
-        }
-
-        .memory-item img {
+        .column img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: auto;
             border-radius: 10px;
-            margin-bottom: var(--space-sm);
-            border: 1px solid var(--color-border);
+            object-fit: contain;
         }
 
-        .memory-item video, 
-        .memory-item audio {
-            width: 100%;
-            margin-bottom: var(--space-sm);
-            border-radius: 8px;
+        /* --- Feature Highlights --- */
+        .picture-area {
+            background: var(--color-bg-soft);
+            padding: var(--space-xl) var(--space-md);
         }
 
-        .file-name {
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: var(--color-text);
-            margin: 5px 0;
-            word-break: break-all;
+        .picture-area .wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            display: grid;
+            gap: var(--space-lg);
             text-align: left;
-            padding-left: 4px;
         }
 
-        .status-message {
+        .picture-area h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--color-text);
+            margin: 0 0 var(--space-xs);
+            padding-left: var(--space-sm);
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .picture-area .wrapper > div:nth-child(2) h4 {
+            border-left-color: var(--color-primary);
+        }
+
+        .picture-area .wrapper > div:nth-child(3) h4 {
+            border-left-color: var(--color-accent-2);
+        }
+
+        .picture-area p {
             font-family: var(--font-body);
+            font-size: 1.05rem;
             color: var(--color-text-soft);
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-top: var(--space-md);
+            margin: 0;
+            padding-left: var(--space-sm);
         }
 
+        /* --- Call to Action Container --- */
+        .background-area {
+            background: radial-gradient(ellipse 60% 90% at 80% 10%, rgba(210, 170, 220, 0.25), transparent 60%),
+                        radial-gradient(ellipse 55% 80% at 10% 90%, rgba(160, 190, 230, 0.2), transparent 60%),
+                        var(--color-bg-soft);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+
+        .background-area .wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .background-area h1 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin: 0 0 var(--space-sm);
+            color: var(--color-text);
+        }
+
+        .background-area h2 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin: var(--space-lg) 0 var(--space-xs);
+        }
+
+        .background-area p {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            color: var(--color-text-soft);
+            margin: 0 0 var(--space-sm);
+            line-height: 1.7;
+        }
+
+        /* --- Footer --- */
         footer { 
             text-align: center; 
             padding: var(--space-md); 
@@ -190,9 +242,22 @@
         @media (max-width: 640px) {
             .login-navbar-row {
                 padding: 0 1.5rem !important;
+                flex-direction: column;
+                height: auto !important;
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+                gap: 1rem;
             }
-            .memory-item {
-                max-width: 100%;
+            .page-wrapper {
+                margin-top: 140px;
+            }
+            nav {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav a {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -217,71 +282,76 @@
         </div>
     </div>
 
-   
-    fetch('navbar.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('navbar').innerHTML = data;
+    <div class="page-wrapper">
+        
+        <div class="banner-area">
+            <h2>Create Your Memory</h2>
+        </div>
+         
+        <div class="content-area">
+            <h2>Hello! Let's create a special memory together.</h2>
+            <div class="row">
+                <div class="column">
+                    <img src="https://img.freepik.com/premium-vector/video-camera-icon-isolated-white-background-vector-illustration_736051-747.jpg" alt="Record a video">
+                </div>
+                <div class="column">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/000/420/512/small/Multimedia__28138_29.jpg" alt="Record audio">
+                </div>
+                <div class="column">
+                    <img src="https://www.shutterstock.com/image-vector/camera-vector-icon-photo-line-600nw-1044036295.jpg" alt="Upload a photo">
+                </div>
+            </div>
+        </div>
+         
+        <div class="picture-area">
+            <div class="wrapper">
+                <div>
+                    <h4>Reminisce</h4>
+                    <p>We encourage all users to create videos or voice recordings about your treasured life memories.</p>
+                </div>
+                <div>
+                    <h4>Socialize</h4>
+                    <p>We explain how to set up simple methods for connecting with family members who can contribute memories or share video and audio messages via the diidii app.</p>
+                </div>
+                <div>
+                    <h4>Relax with Music Suggestions</h4>
+                    <p>We suggest ways to build playlists of songs from your early years together.</p>
+                </div>
+            </div>
+        </div>
+         
+        <div class="background-area">
+            <div class="wrapper">
+                <h1>Need a moment to capture your memories?</h1>
+                <p>Navigate to the Connect page where you can record your voice, capture a precious video, or upload a photo of your loved ones.</p>
+                
+                <h2>Need some help with our tools?</h2>
+                <p>You can find detailed tutorial illustrations for each tool we offer on the Help page.</p>
+            </div>
+        </div>
 
-        fetch('/check-login')
-          .then(response => response.json())
-          .then(data => {
-            if (data.loggedIn) {
-              document.getElementById('usernameDisplay').textContent = data.username;
-              document.getElementById('profileBadge').style.display = 'block';
+        <footer>
+            &copy; 2024 Diidii App. All rights reserved.
+        </footer>
+    </div>
+
+    <script>
+        // Clean asynchronous login verification
+        async function checkLoginState() {
+            try {
+                const response = await fetch('/check-login');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.loggedIn) {
+                        document.getElementById('usernameDisplay').textContent = data.username;
+                        document.getElementById('profileBadge').style.display = 'block';
+                    }
+                }
+            } catch (err) {
+                console.log("Local standalone server: Dynamic state query bypassed.");
             }
-          });
-      });
-  </script>
-
-  <!-- Banner -->
-  <div class="banner-area">
-    <h2>Create Your Memory</h2>
-  </div>
-
-  <!-- Intro -->
-  <div class="content-area">
-    <h2>Hello! Let's create a special memory together.</h2>
-    <div class="row">
-      <div class="column">
-        <img src="https://img.freepik.com/premium-vector/video-camera-icon-isolated-white-background-vector-illustration_736051-747.jpg" alt="Record a video">
-      </div>
-      <div class="column">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/000/420/512/small/Multimedia__28138_29.jpg" alt="Record audio">
-      </div>
-      <div class="column">
-        <img src="https://www.shutterstock.com/image-vector/camera-vector-icon-photo-line-600nw-1044036295.jpg" alt="Upload a photo">
-      </div>
-    </div>
-  </div>
-
-  <!-- Feature explainer -->
-  <div class="picture-area">
-    <div class="wrapper">
-      <div>
-        <h4>Reminisce</h4>
-        <p>We encourage all users to create videos or voice recordings about your treasured life memories.</p>
-      </div>
-      <div>
-        <h4>Socialize</h4>
-        <p>We explain how to set up simple methods for connecting with family members who can contribute memories or share video and audio messages via the diidii app.</p>
-      </div>
-      <div>
-        <h4>Relax with Music Suggestions</h4>
-        <p>We suggest ways to build playlists of songs from your early years together.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="background-area">
-    <div class="wrapper">
-      <h1>Need a moment to capture your memories?</h1>
-      <p>Navigate to the Connect page where you can record your voice, capture a precious video, or upload a photo of your loved ones.</p>
-      <h2>Need some help with our tools?</h1>
-      <p>You can find detailed tutorial illustrations for each tool we offer on the Help page.</p>
-    </div>
-  </div>
-
+        }
+        checkLoginState();
+    </script>
 </body>
 </html>
