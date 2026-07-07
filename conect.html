@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Upload & Record - diidii</title>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
 
@@ -43,7 +44,7 @@
             min-height: 100vh;
         }
 
-        /* --- Navbar Layout --- */
+        /* --- Unified App Navbar Layout --- */
         .login-navbar-row {
             display: flex !important;
             align-items: center !important;
@@ -81,12 +82,12 @@
             border-bottom-color: var(--color-accent);
         }
 
-        /* --- Page Wrapper Canvas Layout --- */
+        /* --- Watercolor Canvas Core Layout Wrapper --- */
         .page-wrapper {
             flex: 1;
             display: flex;
             flex-direction: column;
-            margin-top: 80px; /* Offset for fixed top navbar */
+            margin-top: 80px; /* Offset below fixed nav */
             background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(216, 180, 222, 0.4), transparent 60%), 
                         radial-gradient(ellipse 55% 75% at 85% 30%, rgba(174, 198, 232, 0.35), transparent 60%), 
                         var(--color-bg);
@@ -99,7 +100,7 @@
             padding: var(--space-xl) var(--space-sm);
         }
 
-        /* --- Section Styling --- */
+        /* --- Section Content Cards --- */
         .section {
             background-color: var(--color-white);
             border: 1px solid var(--color-border);
@@ -128,6 +129,7 @@
             font-weight: 500;
         }
 
+        /* --- Content List Sizing --- */
         ol {
             padding-left: 1.25rem;
             margin: 0;
@@ -138,10 +140,9 @@
             font-size: 1.05rem;
             color: var(--color-text-soft);
             padding: var(--space-xs) 0;
-            list-style-type: decimal;
         }
 
-        /* --- Form Elements and Previews --- */
+        /* --- Accessible System Inputs & Previews --- */
         input[type="file"] {
             margin-bottom: var(--space-sm);
         }
@@ -167,7 +168,7 @@
             font-size: 0.95rem;
         }
 
-        video, cameraPreview {
+        video, audio {
             display: block;
             max-width: 100%;
             border-radius: 8px;
@@ -176,12 +177,10 @@
         }
 
         audio {
-            display: block;
-            width: 100%;
-            margin: var(--space-sm) 0;
+            background-color: transparent;
         }
 
-        /* --- Buttons --- */
+        /* --- Interactive Application Buttons --- */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -205,7 +204,9 @@
         .btn-info { background-color: var(--color-bg-soft); color: var(--color-text); border: 1px solid var(--color-border); }
 
         .btn:hover { opacity: 0.9; }
+        .btn:active { transform: scale(0.99); }
 
+        /* --- Soft Instructive Explainer Blocks --- */
         .tutorial { 
             margin-top: var(--space-md);
             background-color: var(--color-bg-soft);
@@ -227,13 +228,14 @@
             margin-bottom: var(--space-sm);
         }
 
-        footer { 
-            text-align: center; 
-            padding: var(--space-md); 
-            background: var(--color-white); 
-            border-top: 1px solid var(--color-border); 
-            font-size: 0.9rem; 
-            color: var(--color-text-soft); 
+        /* --- Footer Layout --- */
+        footer {
+            text-align: center;
+            padding: var(--space-md);
+            background-color: var(--color-white);
+            color: var(--color-text-soft);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-border);
         }
 
         @media (max-width: 640px) {
@@ -245,21 +247,10 @@
                 padding-bottom: 1rem !important;
                 gap: 1rem;
             }
-            .page-wrapper {
-                margin-top: 140px;
-            }
-            nav {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            nav a {
-                font-size: 1.1rem;
-            }
-            .btn {
-                width: 100%;
-                margin-bottom: 8px;
-            }
+            .page-wrapper { margin-top: 140px; }
+            nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            nav a { font-size: 1.1rem; }
+            .btn { width: 100%; margin-bottom: 8px; }
         }
     </style>
 </head>
@@ -303,7 +294,7 @@
                 <input type="file" accept="image/*,video/*" id="mediaUpload" multiple onchange="previewMedia(event)">
                 <div id="mediaPreviewContainer" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px;"></div>
                 <button class="btn btn-primary" onclick="uploadMedia()">
-                    <i class="material-icons" style="font-size:1.1rem; vertical-align:middle;">upload</i> Upload Media
+                    <i class="fas fa-upload"></i> Upload Media
                 </button>
                 <div class="tutorial">
                     <strong>How to Upload Media:</strong> Click the file button, select your photos or videos, enter file names for each, and press "Upload Media" to confirm.
@@ -323,7 +314,9 @@
 
             <div class="section" id="record-video">
                 <h2>Record Videos</h2>
-                <button class="btn btn-primary" id="openCamera">Open Camera</button>
+                <button class="btn btn-primary" id="openCamera">
+                    <i class="fas fa-video"></i> Open Camera
+                </button>
                 <video id="videoPreview" width="320" height="240" autoplay></video>
                 <button id="startRecordingVideo" class="btn btn-warning" style="display: none;">Start Recording</button>
                 <button id="stopRecordingVideo" class="btn btn-warning" style="display: none;">Stop Recording</button>
@@ -339,7 +332,9 @@
 
             <div class="section" id="record-audio">
                 <h2>Record Audio</h2>
-                <button class="btn btn-primary" id="openMicrophone">Open Microphone</button>
+                <button class="btn btn-primary" id="openMicrophone">
+                    <i class="fas fa-microphone"></i> Open Microphone
+                </button>
                 <audio id="audioPreview" controls style="display: none;"></audio>
                 <button id="startRecordingAudio" class="btn btn-warning" style="display: none;">Start Recording</button>
                 <button id="stopRecordingAudio" class="btn btn-warning" style="display: none;">Stop Recording</button>
@@ -358,7 +353,9 @@
                 <div class="reminder">
                     <p style="margin:0;">Don't forget to take your daily pictures! 📸</p>
                 </div>
-                <button class="btn btn-info" onclick="setReminder()">Set Reminder</button>
+                <button class="btn btn-info" onclick="setReminder()">
+                    <i class="fas fa-bell"></i> Set Reminder
+                </button>
                 <div class="tutorial">
                     <strong>How to Set Reminders:</strong> Click the "Set Reminder" button to receive daily notifications.
                 </div>
@@ -366,7 +363,9 @@
 
             <div class="section" id="music">
                 <h2>Enjoy Music</h2>
-                <a href="music_database.html" target="_blank" class="btn btn-primary">Open Music Collection</a>
+                <a href="music_database.html" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-youtube"></i> Open Music Collection
+                </a>
                 <div class="tutorial">
                     <strong>How to Use Music:</strong> Click the button to explore music tailored for your preferences.
                 </div>
@@ -447,8 +446,9 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ image: dataUrl })
-            });
-            alert('Photo upload requested.');
+            })
+            .then(response => response.ok ? alert('Photo uploaded successfully!') : alert('Failed to upload photo.'))
+            .catch(error => console.error('Error uploading photo:', error));
         }
 
         openCameraButton.addEventListener('click', async () => {
@@ -497,6 +497,83 @@
             stopRecordingVideoButton.style.display = 'none';
         });
 
+        uploadVideoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(uploadVideoForm);
+            const response = await fetch('/upload-video', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Video uploaded successfully!');
+            } else {
+                alert('Failed to upload video.');
+            }
+        });
+
+        openMicrophoneButton.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioPreview.srcObject = stream;
+                audioPreview.style.display = 'block';
+                startRecordingAudioButton.style.display = 'inline-block';
+            } catch (err) {
+                console.error('Error accessing microphone: ', err);
+                alert('Could not access the microphone.');
+            }
+        });
+
+        startRecordingAudioButton.addEventListener('click', () => {
+            recordedChunksAudio = [];
+            const stream = audioPreview.srcObject;
+            mediaRecorderAudio = new MediaRecorder(stream);
+
+            mediaRecorderAudio.ondataavailable = function(event) {
+                if (event.data.size > 0) {
+                    recordedChunksAudio.push(event.data);
+                }
+            };
+
+            mediaRecorderAudio.onstop = function() {
+                const blob = new Blob(recordedChunksAudio, { type: 'audio/mp3' });
+                const audioURL = URL.createObjectURL(blob);
+                recordedAudio.src = audioURL;
+                recordedAudio.style.display = 'block';
+
+                const file = new File([blob], 'audio.mp3', { type: 'audio/mp3' });
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                audioFileInput.files = dataTransfer.files;
+
+                uploadAudioForm.style.display = 'block';
+            };
+
+            mediaRecorderAudio.start();
+            stopRecordingAudioButton.style.display = 'inline-block';
+            startRecordingAudioButton.style.display = 'none';
+        });
+
+        stopRecordingAudioButton.addEventListener('click', () => {
+            mediaRecorderAudio.stop();
+            stopRecordingAudioButton.style.display = 'none';
+        });
+
+        uploadAudioForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(uploadAudioForm);
+            const response = await fetch('/upload-audio', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Audio uploaded successfully!');
+            } else {
+                alert('Failed to upload audio.');
+            }
+        });
+
         function previewMedia(event) {
             const files = event.target.files;
             const previewContainer = document.getElementById('mediaPreviewContainer');
@@ -504,6 +581,7 @@
 
             Array.from(files).forEach((file, index) => {
                 const reader = new FileReader();
+
                 reader.onload = function(e) {
                     let mediaElement;
                     if (file.type.startsWith('image/')) {
@@ -533,8 +611,77 @@
                     container.appendChild(input);
                     previewContainer.appendChild(container);
                 };
+
                 reader.readAsDataURL(file);
             });
+        }
+
+        function uploadMedia() {
+            const mediaUpload = document.getElementById('mediaUpload');
+            const files = mediaUpload.files;
+            if(files.length === 0) { alert('Please choose a file first.'); return; }
+            const formData = new FormData();
+
+            Array.from(files).forEach((file, index) => {
+                const fileNameInput = document.getElementById(`fileName_${index}`);
+                let fileName = '';
+                const timestamp = Date.now() + index;
+                const originalExtension = file.name.split('.').pop().toLowerCase();
+                
+                if (fileNameInput && fileNameInput.value.trim()) {
+                    fileName = fileNameInput.value.trim();
+                    fileName = fileName.replace(/[,\/\\:*?"<>|]/g, '').replace(/\.[^/.]+$/, '');
+                    fileName = `${timestamp}_${fileName}.${originalExtension}`;
+                } else {
+                    const nameWithoutExt = file.name.replace(/\.[^/.]+$/, '');
+                    fileName = `${timestamp}_${nameWithoutExt}.${originalExtension}`;
+                }
+
+                formData.append('media', file);
+                formData.append(`fileName_${index}`, fileName);
+            });
+
+            formData.append('fileCount', files.length);
+
+            fetch('/upload-media', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert(result);
+                document.getElementById('mediaUpload').value = '';
+                document.getElementById('mediaPreviewContainer').innerHTML = '';
+            })
+            .catch(error => {
+                console.error('Error uploading media:', error);
+                alert('Failed to upload media.');
+            });
+        }
+
+        function setReminder() {
+            if (!('Notification' in window)) {
+                alert('This browser does not support desktop notifications.');
+                return;
+            }
+
+            if (Notification.permission === 'granted') {
+                scheduleReminder();
+            } else if (Notification.permission !== 'denied') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') scheduleReminder();
+                });
+            }
+        }
+
+        function scheduleReminder() {
+            alert('Reminder set! Notification coming in 5 seconds.');
+            setTimeout(() => {
+                new Notification('Reminder', {
+                    body: 'Time to take your daily picture! 📸',
+                    icon: 'logo_square-removebg-preview copy.png'
+                });
+            }, 5000);
         }
     </script>
 </body>
