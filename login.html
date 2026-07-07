@@ -200,32 +200,22 @@ nav a:focus-visible {
         </div>
     </div>
 
-    <div class="page-wrapper">
+   <div class="page-wrapper">
         <div class="content-area">
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit">Login</button>
-                    <button type="button" id="signupBtn">Sign Up</button>
-                </div>
-            </form>
+            <h2>Your Memories</h2>
+            <div class="info-note">
+                💡 When logged into your account, all pictures, audio clips, and videos you have uploaded will appear safely here.
+            </div>
+            <div id="memories" class="memory-grid">
+                <div class="status-message">Loading memories...</div>
+            </div>
         </div>
     </div>
 
     <footer>
         &copy; 2024 Diidii App. All rights reserved.
     </footer>
-
+      
     <script>
         // Wrapped safely inside an async function with try/catch blocks 
         // to guarantee a backend crash cannot turn your visual page blank!
